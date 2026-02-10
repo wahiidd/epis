@@ -1,0 +1,42 @@
+.layout {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background avec gradient radial vert */
+.layout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, #56bf7c 0%, #3a9b68 50%, #00625d 100%);
+  z-index: 0;
+}
+
+.layout::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 98, 93, 0.3) 100%);
+  z-index: 1;
+}
+
+.screen {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .screen {
+    padding: 0.5rem;
+    align-items: flex-start;
+  }
+}

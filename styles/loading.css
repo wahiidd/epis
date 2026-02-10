@@ -1,0 +1,108 @@
+.loading-overlay{
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1B4D45 0%, #1C3A5C 50%, #2D2D2D 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Animated background elements */
+.loading-overlay::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.loading-overlay::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(139, 21, 56, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(30px); }
+}
+
+.loading-center {
+  text-align: center;
+  color: #fff;
+  position: relative;
+  z-index: 10;
+}
+
+.logo-anim {
+  display: inline-flex;
+  gap: 6px;
+  font-family: 'Kooperativ', serif;
+  font-weight: 900;
+  font-size: 48px;
+  letter-spacing: 6px;
+  color: #D4AF37;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(139, 21, 56, 0.3);
+}
+
+.logo-anim .l {
+  display: inline-block;
+  transform-origin: 50% 50%;
+  animation: pop 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+}
+
+.logo-anim .l:nth-child(1) { animation-delay: 0s; }
+.logo-anim .l:nth-child(2) { animation-delay: 0.08s; }
+.logo-anim .l:nth-child(3) { animation-delay: 0.16s; }
+.logo-anim .l:nth-child(4) { animation-delay: 0.24s; }
+.logo-anim .l:nth-child(5) { animation-delay: 0.32s; }
+.logo-anim .l:nth-child(6) { animation-delay: 0.40s; }
+.logo-anim .l:nth-child(7) { animation-delay: 0.48s; }
+.logo-anim .l:nth-child(8) { animation-delay: 0.56s; }
+.logo-anim .l:nth-child(9) { animation-delay: 0.64s; }
+
+@keyframes pop {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  30% { transform: translateY(-14px) scale(1.14); opacity: 1; }
+  60% { transform: translateY(-8px) scale(1.06); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.loading-sub {
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Caudex', serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  background: linear-gradient(90deg, #D4AF37, #8B1538);
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}

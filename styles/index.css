@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Kooperativ:wght@400;700;900&family=Roca+One&family=Caudex:wght@400;700&display=swap');
+
+:root {
+  /* Primary Colors - Philosophy/Epistemology Theme */
+  --color-red: #8B1538;
+  --color-red-light: #D63457;
+  --color-yellow: #F4C430;
+  --color-green-dark: #1B4D45;
+  --color-green-mint: #2D8F7F;
+  --color-green-light: #5DADE2;
+  --color-blue: #1C3A5C;
+  --color-orange: #D97E2A;
+  --color-beige: #F5F1E8;
+  --color-gray-dark: #2D2D2D;
+  --color-gray-light: #D1C9BD;
+  --color-white: #FFFFFF;
+  --color-gold: #D4AF37;
+  --color-bronze: #B87333;
+  --color-copper: #B87333;
+
+  /* Gradients */
+  --gradient-dark: linear-gradient(135deg, #1B4D45 0%, #1C3A5C 100%);
+  --gradient-warm: linear-gradient(135deg, #8B1538 0%, #D97E2A 100%);
+  --gradient-premium: linear-gradient(135deg, #D4AF37 0%, #8B1538 100%);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Borders */
+  --border-radius: 12px;
+  --border-width: 2px;
+
+  /* Fonts */
+  --font-title: 'Kooperativ', serif;
+  --font-subtitle: 'Roca One', serif;
+  --font-body: 'Caudex', serif;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 16px 32px rgba(139, 21, 56, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-beige);
+  color: var(--color-gray-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--border-radius);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--gradient-warm);
+  color: white;
+  border: 2px solid var(--color-gold);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #F4C430 0%, #D4AF37 100%);
+  color: var(--color-gray-dark);
+  border: 2px solid var(--color-gray-dark);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+}
