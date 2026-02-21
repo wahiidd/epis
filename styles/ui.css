@@ -485,8 +485,10 @@
 /* Dice compact responsive */
 @media (max-width: 768px) {
   .dice-compact {
-    top: 8px;
-    left: 8px;
+    position: static;
+    margin: 15px auto 0;
+    justify-content: center;
+    width: fit-content;
     gap: 3px;
   }
 
@@ -495,19 +497,15 @@
     height: 40px;
     border-radius: 10px;
   }
-
   .dice-btn-icon { font-size: 1.3rem; }
-
   .dice-result-bubble {
     width: 26px;
     height: 26px;
   }
-
   .dice-result-number { font-size: 0.75rem; }
   .turn-player-name { font-size: 0.6rem; }
   .turn-text { font-size: 0.45rem; }
   .dice-label { font-size: 0.45rem; }
-
   .dice-turn-label {
     padding: 2px 8px;
     border-radius: 8px;
@@ -516,8 +514,10 @@
 
 @media (max-width: 480px) {
   .dice-compact {
-    top: 4px;
-    left: 4px;
+    position: static;
+    margin: 12px auto 0;
+    justify-content: center;
+    width: fit-content;
     gap: 2px;
   }
 
@@ -527,21 +527,16 @@
     border-radius: 8px;
     border-width: 1.5px;
   }
-
   .dice-btn-icon { font-size: 1.1rem; }
-
   .dice-result-bubble {
     width: 22px;
     height: 22px;
   }
-
   .dice-result-number { font-size: 0.65rem; }
   .dice-label { font-size: 0.4rem; }
-
   .dice-turn-label {
     padding: 2px 6px;
   }
-
   .turn-player-name { font-size: 0.5rem; }
   .turn-text { font-size: 0.4rem; }
 }

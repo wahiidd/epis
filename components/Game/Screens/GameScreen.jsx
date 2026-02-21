@@ -27,9 +27,11 @@ export default function GameScreen() {
   return (
     <div className="screen game-screen">
       <div className="game-layout">
-        <div className="game-main">
+        <div className="game-main" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <GameBoard />
-          <DiceRoller />
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '18px' }}>
+            <DiceRoller />
+          </div>
         </div>
 
         <div className="game-sidebar">

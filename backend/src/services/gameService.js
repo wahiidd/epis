@@ -19,15 +19,15 @@ export async function generateBoard() {
   // Add 5 random squares
   for (let i = 0; i < 5; i++) squares.push('random');
   
-    // Shuffle the middle squares (keep start and end fixed)
-    // Fisher-Yates shuffle on elements from index 1 to length-2
-    for (let i = squares.length - 1; i > 1; i--) {
-      const j = Math.floor(Math.random() * (i - 1)) + 1;
-      [squares[i], squares[j]] = [squares[j], squares[i]];
-    }
+  // Shuffle the middle squares (keep start and end fixed)
+  // Fisher-Yates shuffle on elements from index 1 to length-2
+  for (let i = squares.length - 1; i > 1; i--) {
+    const j = Math.floor(Math.random() * (i - 1)) + 1;
+    [squares[i], squares[j]] = [squares[j], squares[i]];
+  }
   
-    // Add end square at the end
-    squares.push('end');
+  // Add end square at the end
+  squares.push('end');
   
   return squares;
 }
@@ -95,8 +95,14 @@ export async function getRandomQuestion(difficulty, gameId = null) {
       asked.add(originalIndex);
       askedQuestions.set(gameId, asked);
     }
-    
-    return randomQuestion;
+
+    // Shuffle options so the correct answer isn't always in the same position
+    const shuffledOptions = [...randomQuestion.options].sort(() => Math.random() - 0.5);
+
+    return {
+      ...randomQuestion,
+      options: shuffledOptions
+    };
   } catch (error) {
     console.error('Error getting random question:', error);
     return null;
