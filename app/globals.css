@@ -8,7 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'Kooperativ', sans-serif;
+  --font-sans: 'Roboto', sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -20,8 +20,8 @@
 }
 
 @font-face {
-  font-family: 'Kooperativ';
-  src: url('/fonts/mordak_regular-webfont.woff2') format('woff2');
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

@@ -262,96 +262,293 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Modal Règles */}
+       {/* ===================== MODAL RÈGLES DU JEU ===================== */}
       {showRulesModal && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn" onClick={() => setShowRulesModal(false)}>
-          <div className="bg-gradient-to-br from-[#a50606] via-[#ff0000] to-[#a50606] rounded-3xl p-8 md:p-12 max-w-3xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border-4 border-white/30" onClick={(e) => e.stopPropagation()}>
-            <div className="flex justify-between items-center mb-10">
-              <h2 className="text-4xl md:text-6xl font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: '800' }}>
-                📖 RÈGLES DU JEU
-              </h2>
-              <button onClick={() => setShowRulesModal(false)} className="text-white/90 text-4xl hover:text-[#56bf7c] hover:rotate-180 transition-all duration-500">✕</button>
-            </div>
-            <div className="text-white space-y-6 text-lg leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              <p className="flex items-start gap-3">
-                <span className="text-2xl">🎯</span>
-                <span><strong className="text-white font-bold">But du jeu</strong><br/>Avancez sur le plateau, répondez aux questions d'épistémologie et atteignez la case finale. Le meilleur score désigne le Grand Épistémologue.</span>
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="text-2xl">🎲</span>
-                <span><strong className="text-white font-bold">Déroulement</strong><br/>
-                  1. Lancez le dé <br/>
-                  2. Avancez votre pion<br/>
-                  3. Répondez à la question de la case<br/>
-                </span>
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="text-2xl">🗺️</span>
-                <span><strong className="text-white font-bold">Cases & Points</strong><br/>
-                  Facile · +1<br/>
-                  Moyen · +3<br/>
-                  Difficile · +5<br/>
-                  Aléatoire · +5
-                </span>
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="text-2xl">⏱️</span>
-                <span><strong className="text-white font-bold">Temps</strong><br/>20 secondes par question. Alerte à 10s.</span>
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="text-2xl">👥</span>
-                <span><strong className="text-white font-bold">Modes</strong><br/>Solo ou Équipe (1-4 joueurs), chacun joue à tour de rôle.</span>
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="text-2xl">🏆</span>
-                <span><strong className="text-white font-bold">Victoire</strong><br/>Premier joueur à la case finale = fin de partie. Classement par score</span>
-              </p>
-            </div>
-            {/* Points décoratifs dans la modal */}
-            <div className="flex justify-center gap-6 mt-10 text-3xl">
-              <span className="animate-bounce-slow">🎮</span>
-              <span className="animate-bounce-slow-delayed">🧠</span>
-              <span className="animate-bounce-slow">⚡</span>
+        <div
+          className="fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-5 animate-fadeIn"
+          onClick={() => setShowRulesModal(false)}
+        >
+          <div
+            className="relative bg-gradient-to-br from-[#8a0404] via-[#c00000] to-[#8a0404] rounded-2xl sm:rounded-3xl w-full max-w-sm sm:max-w-lg md:max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20 sm:border-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Subtle watermark cir.png */}
+            <img
+              src="/images/cir.png"
+              alt=""
+              className="absolute bottom-6 right-6 w-32 sm:w-44 opacity-[0.06] pointer-events-none select-none"
+              style={{ filter: 'grayscale(1) brightness(4)' }}
+            />
+
+            <div className="relative p-5 sm:p-7 md:p-9">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6 sm:mb-8">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <img
+                    src="/images/cir.png"
+                    alt=""
+                    className="w-7 h-7 sm:w-9 sm:h-9 object-contain opacity-90 drop-shadow"
+                  />
+                  <h2
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-wide"
+                    style={{ fontFamily: 'Poppins, sans-serif', textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}
+                  >
+                    RÈGLES DU JEU
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setShowRulesModal(false)}
+                  className="flex-shrink-0 ml-3 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-white/10 text-white/70 hover:text-white hover:bg-white/20 hover:rotate-90 transition-all duration-300 text-lg"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Divider */}
+              <div className="h-px bg-white/20 mb-5 sm:mb-7" />
+
+              {/* Content blocks */}
+              <div className="space-y-3 sm:space-y-4 text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+
+                {/* Objectif */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-sm sm:text-base mb-1.5 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-white/60 inline-block flex-shrink-0"></span>
+                    Objectif du jeu
+                  </h3>
+                  <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
+                    Progressez sur le plateau en répondant correctement aux questions d'épistémologie. Accumulez un maximum de points et atteignez la case finale pour devenir le <strong className="text-white">Grand Épistémologue</strong>.
+                  </p>
+                </div>
+
+                {/* Joueurs */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-sm sm:text-base mb-1.5 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-white/60 inline-block flex-shrink-0"></span>
+                    Nombre de joueurs
+                  </h3>
+                  <ul className="text-white/80 text-xs sm:text-sm space-y-1 leading-relaxed">
+                    <li>• 1 à 4 joueurs</li>
+                    <li>• Mode Solo ou Équipe</li>
+                    <li>• Chaque joueur dispose d'un pion</li>
+                    <li>• Les joueurs jouent chacun leur tour</li>
+                  </ul>
+                </div>
+                {/* Déroulement */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-sm sm:text-base mb-1.5 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-white/60 inline-block flex-shrink-0"></span>
+                    Déroulement d'un tour
+                  </h3>
+                  <p className="text-white/60 text-xs mb-2 italic">À son tour, un joueur :</p>
+                  <ol className="text-white/80 text-xs sm:text-sm space-y-1 leading-relaxed">
+                    <li>1. Lance le dé.</li>
+                    <li>2. Son pion avance du nombre de cases indiqué.</li>
+                    <li>3. Répond à la question correspondant à la case atteinte.</li>
+                  </ol>
+                </div>
+
+                {/* Cases & Points */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-sm sm:text-base mb-3 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-white/60 inline-block flex-shrink-0"></span>
+                    Types de cases &amp; Points
+                  </h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2">
+                      <span className="w-3 h-3 rounded-full bg-green-400 flex-shrink-0 shadow-[0_0_6px_#4ade80]"></span>
+                      <span className="text-white/80 text-xs sm:text-sm">Facile <strong className="text-white">+1 pt</strong></span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2">
+                      <span className="w-3 h-3 rounded-full bg-yellow-400 flex-shrink-0 shadow-[0_0_6px_#facc15]"></span>
+                      <span className="text-white/80 text-xs sm:text-sm">Moyen <strong className="text-white">+3 pts</strong></span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2">
+                      <span className="w-3 h-3 rounded-full bg-red-300 flex-shrink-0 shadow-[0_0_6px_#fca5a5]"></span>
+                      <span className="text-white/80 text-xs sm:text-sm">Difficile <strong className="text-white">+5 pts</strong></span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2">
+                      <span className="w-3 h-3 rounded-full bg-white/50 flex-shrink-0"></span>
+                      <span className="text-white/80 text-xs sm:text-sm">Aléatoire <strong className="text-white">+5 pts</strong></span>
+                    </div>
+                  </div>
+                  <p className="text-white/50 text-xs mt-3 italic">Points attribués uniquement si la réponse est correcte.</p>
+                </div>
+
+                {/* Temps */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-sm sm:text-base mb-1.5 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-white/60 inline-block flex-shrink-0"></span>
+                    Temps de réponse
+                  </h3>
+                  <ul className="text-white/80 text-xs sm:text-sm space-y-1 leading-relaxed">
+                    <li>• <strong className="text-white">20 secondes</strong> par question avec alerte sonore à 10 secondes.</li>
+                    <li>• Sans réponse dans le temps imparti → réponse incorrecte.</li>
+                  </ul>
+                </div>
+
+                {/* Victoire */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-sm sm:text-base mb-1.5 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-yellow-300 inline-block flex-shrink-0 shadow-[0_0_6px_#fde047]"></span>
+                    Fin de partie &amp; Victoire
+                  </h3>
+                  <ul className="text-white/80 text-xs sm:text-sm space-y-1 leading-relaxed">
+                    <li>• La partie se termine dès qu'un joueur atteint la <strong className="text-white">case finale</strong>.</li>
+                    <li>• Cette arrivée met fin au jeu pour <strong className="text-white">tous</strong> les joueurs.</li>
+                    <li>• ⚠️ Le classement final est déterminé uniquement par le <strong className="text-white">score total</strong>.</li>
+                    <li>• Le joueur avec le meilleur score devient le <strong className="text-white">Grand Épistémologue</strong>.</li>
+                  </ul>
+                </div>
+
+              </div>
+
+              {/* Bottom deco */}
+              <div className="flex justify-center items-center gap-4 mt-7 opacity-40">
+                <img src="/images/cir.png" alt="" className="w-8 h-8 object-contain animate-spin-slow" />
+                <div className="h-px flex-1 bg-white/30" />
+                <img src="/images/cir.png" alt="" className="w-8 h-8 object-contain animate-spin-slow" style={{ animationDirection: 'reverse' }} />
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Modal À propos */}
+      {/* ===================== MODAL À PROPOS ===================== */}
       {showAboutModal && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn" onClick={() => setShowAboutModal(false)}>
-          <div className="bg-gradient-to-br from-[#00625d] via-[#56bf7c] to-[#00625d] rounded-3xl p-8 md:p-12 max-w-3xl w-full shadow-2xl border-4 border-white/30" onClick={(e) => e.stopPropagation()}>
-            <div className="flex justify-between items-center mb-10">
-              <h2 className="text-4xl md:text-6xl font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: '800' }}>
-                ℹ️ À PROPOS
-              </h2>
-              <button onClick={() => setShowAboutModal(false)} className="text-white/90 text-4xl hover:text-[#a50606] hover:rotate-180 transition-all duration-500">✕</button>
-            </div>
-            <div className="text-white space-y-8 text-lg leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              <p className="text-xl">
-                <strong className="text-white font-bold text-2xl">Epistémia</strong> est un jeu de culture générale compétitif conçu pour tester vos connaissances dans divers domaines.
-              </p>
-              <p>Développé avec passion pour offrir une expérience éducative et amusante à tous les joueurs.</p>
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                <div className="bg-white/10 p-4 rounded-xl">
-                  <div className="text-3xl mb-2">🎯</div>
-                  <div className="font-bold">Compétition</div>
+        <div
+          className="fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-5 animate-fadeIn"
+          onClick={() => setShowAboutModal(false)}
+        >
+          <div
+            className="relative bg-gradient-to-br from-[#004d47] via-[#00625d] to-[#004d47] rounded-2xl sm:rounded-3xl w-full max-w-sm sm:max-w-lg md:max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20 sm:border-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Subtle watermark book.png */}
+            <img
+              src="/images/book.png"
+              alt=""
+              className="absolute bottom-6 right-6 w-32 sm:w-44 opacity-[0.06] pointer-events-none select-none"
+              style={{ filter: 'grayscale(1) brightness(4)' }}
+            />
+
+            <div className="relative p-5 sm:p-7 md:p-9">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6 sm:mb-8">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <img
+                    src="/images/book.png"
+                    alt=""
+                    className="w-7 h-7 sm:w-9 sm:h-9 object-contain opacity-90 drop-shadow"
+                  />
+                  <h2
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-wide"
+                    style={{ fontFamily: 'Poppins, sans-serif', textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}
+                  >
+                    À PROPOS
+                  </h2>
                 </div>
-                <div className="bg-white/10 p-4 rounded-xl">
-                  <div className="text-3xl mb-2">🧠</div>
-                  <div className="font-bold">Connaissances</div>
-                </div>
+                <button
+                  onClick={() => setShowAboutModal(false)}
+                  className="flex-shrink-0 ml-3 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-white/10 text-white/70 hover:text-white hover:bg-white/20 hover:rotate-90 transition-all duration-300 text-lg"
+                >
+                  ✕
+                </button>
               </div>
-              <p className="mt-8 pt-8 border-t border-white/30 text-center">
-                <strong>Version :</strong> 1.0.0<br/>
-                <strong className="text-2xl">© 2025 Epistémia</strong>
-              </p>
-            </div>
-            {/* Émojis décoratifs */}
-            <div className="flex justify-center gap-6 mt-10 text-3xl">
-              <span className="animate-rotate-slow">🌟</span>
-              <span className="animate-rotate-slow-delayed">✨</span>
-              <span className="animate-rotate-slow">💫</span>
+
+              {/* Divider */}
+              <div className="h-px bg-white/20 mb-5 sm:mb-7" />
+
+              {/* Content */}
+              <div className="space-y-4 sm:space-y-5 text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+
+                {/* Bloc principal */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
+                    <strong className="text-white text-sm sm:text-base">Epistémia</strong> est un projet académique développé durant l'année <strong className="text-white">2025–2026</strong> par les étudiants du{' '}
+                    <strong className="text-white">Master 1 Management, Stratégie et Conseil (MSC)</strong> à l'<strong className="text-white">IHEC Carthage</strong>, sous l'encadrement de{' '}
+                    <strong className="text-white">Mme Mohja Kammoun</strong>.
+                  </p>
+                </div>
+
+                {/* Origine */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-xs sm:text-sm mb-2 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-[#56bf7c] inline-block flex-shrink-0"></span>
+                    Origine du projet
+                  </h3>
+                  <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
+                    À l'origine, il s'agissait d'un jeu d'épistémologie conçu par la promotion précédente <strong className="text-white">(2024–2025)</strong> du même Master. Le projet a ensuite été repris afin de le transformer en une plateforme web interactive, moderne et accessible, tout en conservant l'esprit pédagogique du jeu initial.
+                  </p>
+                </div>
+
+                {/* Vision */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-xs sm:text-sm mb-2 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-[#56bf7c] inline-block flex-shrink-0"></span>
+                    Notre vision
+                  </h3>
+                  <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
+                    Epistémia s'inscrit dans une volonté de renouveler les méthodes d'apprentissage en proposant une approche plus participative : <em>apprendre en jouant</em>, réfléchir en équipe et challenger ses connaissances dans un cadre stimulant.
+                  </p>
+                </div>
+
+                {/* Équipe */}
+                <div className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 sm:p-5 border border-white/10">
+                  <h3 className="font-bold text-xs sm:text-sm mb-2 flex items-center gap-2 text-white/90 uppercase tracking-widest">
+                    <span className="w-1.5 h-4 rounded-full bg-[#56bf7c] inline-block flex-shrink-0"></span>
+                    LDéveloppement digital
+                  </h3>
+                  <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-3">
+                    La version digitale a été développée avec  par l'équipe IT du{' '}
+                    <strong className="text-white">Club HEC Finance Academy – IHEC Carthage</strong>.
+                  </p>
+                  <a
+                    href="mailto:hecfa.it.department@gmail.com"
+                    className="inline-flex items-center gap-2 text-[#56bf7c] hover:text-white transition-colors text-xs sm:text-sm font-medium border border-[#56bf7c]/40 hover:border-white/40 rounded-lg px-3 py-1.5 bg-[#56bf7c]/10 hover:bg-white/10"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    ✉️ hecfa.it.department@gmail.com
+                  </a>
+                </div>
+
+                {/* Version */}
+                <div className="text-center text-white/50 text-xs pt-1">
+                  Version 1.0.0 &nbsp;·&nbsp; © 2025 Epistémia
+                </div>
+
+                {/* Logos */}
+                <div className="mt-2 pt-4 border-t border-white/20">
+                  <div className="flex items-center justify-center gap-5 sm:gap-8">
+                    <div className="flex flex-col items-center gap-1.5">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-white/10 flex items-center justify-center p-2 border border-white/10">
+                        <img src="/images/ihec.png" alt="IHEC Carthage" className="w-full h-full object-contain drop-shadow" />
+                      </div>
+                      <span className="text-white/50 text-[10px] text-center">IHEC Carthage</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1.5">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-white/10 flex items-center justify-center p-2 border border-white/10">
+                        <img src="/images/msc.png" alt="Master MSC" className="w-full h-full object-contain drop-shadow" />
+                      </div>
+                      <span className="text-white/50 text-[10px] text-center">Master MSC</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1.5">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-white/10 flex items-center justify-center p-2 border border-white/10">
+                        <img src="/images/fa.png" alt="HEC Finance Academy" className="w-full h-full object-contain drop-shadow" />
+                      </div>
+                      <span className="text-white/50 text-[10px] text-center">HEC Finance Academy</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Bottom deco */}
+              <div className="flex justify-center items-center gap-4 mt-7 opacity-40">
+                <img src="/images/book.png" alt="" className="w-8 h-8 object-contain animate-bounce-slow" />
+                <div className="h-px flex-1 bg-white/30" />
+                <img src="/images/book.png" alt="" className="w-8 h-8 object-contain animate-bounce-slow-delayed" />
+              </div>
             </div>
           </div>
         </div>
