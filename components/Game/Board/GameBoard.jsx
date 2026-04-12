@@ -102,7 +102,9 @@ function buildTrackPath(totalSquares) {
 
 export default function GameBoard() {
   const { state } = useContext(GameContextAPI);
-  const totalSquares = state.boardSquares.length;
+  // Defensive: ensure boardSquares is always an array
+  const boardSquares = Array.isArray(state.boardSquares) ? state.boardSquares : [];
+  const totalSquares = boardSquares.length;
 
   const spiralPositions = useMemo(() => generateSpiralPositions(totalSquares), [totalSquares]);
   const trackPath = useMemo(() => buildTrackPath(totalSquares), [totalSquares]);
@@ -119,6 +121,11 @@ export default function GameBoard() {
     });
     return playersOnSquare;
   };
+
+  // Show loading or placeholder if board is not ready
+  if (!totalSquares) {
+    return <div className="board-container"><div className="loading">Loading board...</div></div>;
+  }
 
   return (
     <div className="board-container">
@@ -173,7 +180,7 @@ export default function GameBoard() {
         </div>
 
         {/* Tiles */}
-        {state.boardSquares.map((squareType, index) => (
+        {boardSquares.map((squareType, index) => (
           <Square
             key={index}
             index={index}
