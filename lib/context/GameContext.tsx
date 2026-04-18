@@ -19,7 +19,7 @@ interface Question {
 }
 
 interface GameState {
-  currentScreen: 'home' | 'mode' | 'game' | 'podium';
+  currentScreen: 'home' | 'mode' | 'game' | 'podium' | 'waiting_approval';
   mode: 'solo' | 'team' | null;
   players: Player[];
   currentPlayerIndex: number;
