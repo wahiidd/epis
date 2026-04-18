@@ -1,25 +1,36 @@
 // GET /api/game/question
 import { NextResponse } from 'next/server';
-
-
 import { sampleQuestions } from '../../../../lib/data/sampleQuestions';
 
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const difficulty = searchParams.get('difficulty');
+    
     if (!difficulty) {
       return NextResponse.json({ error: 'Difficulty required' }, { status: 400 });
     }
+
     // Filter questions by difficulty
-    const filtered = sampleQuestions.filter(q => q.difficulty === difficulty || (difficulty === 'random' && q.difficulty));
-    if (!filtered.length) {
-      return NextResponse.json({ error: 'No questions found' }, { status: 404 });
+    // 'random' picks from all questions
+    let filtered = [];
+    if (difficulty === 'random') {
+      filtered = sampleQuestions;
+    } else {
+      filtered = sampleQuestions.filter(q => q.difficulty === difficulty.toLowerCase());
     }
+
+    if (filtered.length === 0) {
+      return NextResponse.json({ error: `No questions found for difficulty: ${difficulty}` }, { status: 404 });
+    }
+
     // Pick a random question
-    const question = filtered[Math.floor(Math.random() * filtered.length)];
+    const randomIndex = Math.floor(Math.random() * filtered.length);
+    const question = filtered[randomIndex];
+
     return NextResponse.json(question);
   } catch (error) {
+    console.error('API Error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

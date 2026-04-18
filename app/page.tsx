@@ -139,6 +139,18 @@ export default function Home() {
               <span className="text-xl group-hover:scale-125 transition-transform">ℹ️</span>
               <span>À propos</span>
             </button>
+
+            <button
+              onClick={() => {
+                router.push('/admin');
+                setShowSidebar(false);
+              }}
+              className="w-full text-left px-4 py-3 text-white/40 hover:text-[#56bf7c] hover:bg-white/10 rounded-lg font-semibold text-sm transition-all duration-300 border-l-4 border-transparent hover:border-[#56bf7c] hover:pl-6 flex items-center gap-3 group mt-10"
+              style={{ fontFamily: 'Poppins, sans-serif' }}
+            >
+              <span className="text-lg group-hover:scale-125 transition-transform opacity-50">⚙️</span>
+              <span>Admin Board</span>
+            </button>
           </div>
 
           {/* Émojis décoratifs dans la sidebar */}

@@ -5,6 +5,7 @@ import { GameContextAPI } from '../../lib/context/GameContext';
 import ModeScreen from '../../components/Game/Screens/ModeScreen';
 import GameScreen from '../../components/Game/Screens/GameScreen';
 import PodiumScreen from '../../components/Game/Screens/PodiumScreen';
+import WaitingApprovalScreen from '../../components/Game/Screens/WaitingApprovalScreen';
 import GameContext from '../../lib/context/GameContext';
 import '../../styles/layout.css';
 import '../../styles/index.css';
@@ -25,21 +26,32 @@ function GameLayout() {
   const { state, dispatch } = context;
 
   useEffect(() => {
-    // When game page loads, switch to mode screen if still on home
+    const gameMode = localStorage.getItem('gameMode');
+    const pendingGameId = localStorage.getItem('pendingGameId');
+
+    // Clean up "poisoned" localStorage values
+    if (pendingGameId === 'null' || pendingGameId === 'undefined' || pendingGameId === '') {
+      localStorage.removeItem('pendingGameId');
+    }
+
+    if (gameMode === 'null' || gameMode === 'undefined') {
+      localStorage.removeItem('gameMode');
+    }
+
+    if (gameMode && gameMode !== 'null') {
+      dispatch({ type: 'SET_MODE', payload: gameMode });
+    }
+
+    // Default to mode screen
     if (state.currentScreen === 'home') {
       dispatch({ type: 'SWITCH_SCREEN', payload: 'mode' });
-    }
-    
-    // Récupérer le mode de jeu depuis localStorage
-    const gameMode = localStorage.getItem('gameMode');
-    if (gameMode) {
-      dispatch({ type: 'SET_MODE', payload: gameMode });
     }
   }, []);
 
   return (
     <div className="layout">
       {state.currentScreen === 'mode' && <ModeScreen />}
+      {state.currentScreen === 'waiting_approval' && <WaitingApprovalScreen />}
       {state.currentScreen === 'game' && <GameScreen />}
       {state.currentScreen === 'podium' && <PodiumScreen />}
     </div>

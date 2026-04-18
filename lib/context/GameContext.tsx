@@ -65,9 +65,22 @@ const initialState: GameState = {
 };
 
 function gameReducer(state: GameState, action: GameAction): GameState {
+  console.log(`[REDUCER] Action: ${action.type}`, action.payload);
   switch (action.type) {
     case 'SWITCH_SCREEN':
       return { ...state, currentScreen: action.payload };
+    case 'SET_PENDING_GAME':
+      return {
+        ...state,
+        gameId: action.payload.gameId,
+        players: action.payload.players.map((p: any) => ({
+          playerId: p.playerId,
+          name: p.name,
+          score: p.score || 0,
+          position: 0,
+          avatar: p.avatar || '/images/Avatar Logo.png'
+        }))
+      };
     case 'SET_MODE':
       return { ...state, mode: action.payload };
     case 'SET_PLAYERS':
