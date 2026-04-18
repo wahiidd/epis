@@ -6,6 +6,8 @@ import { useTimer } from '../../../lib/hooks/useTimer';
 import { useGameLogic } from '../../../lib/hooks/useGameLogic';
 import { playSound, stopSound } from '../../../lib/services/sound';
 import '../../../styles/cards.css';
+import { TIMER_LIMITS } from '../../../lib/utils/constants';
+
 
 export default function CardModal() {
   const { state } = useContext(GameContextAPI);
@@ -21,11 +23,18 @@ export default function CardModal() {
     }
   };
 
-  const { timeLeft } = useTimer(20, handleTimeUp);
-
-  if (!state.currentQuestion) return null;
 
   const question = state.currentQuestion;
+  // If no question, don't render modal
+  if (!question) return null;
+
+  // Use TIMER_LIMITS by difficulty, fallback to question.timeLimit, then 20
+  const timerValue =
+    (question.difficulty && TIMER_LIMITS[question.difficulty]) ||
+    question.timeLimit ||
+    20;
+  const { timeLeft } = useTimer(timerValue, handleTimeUp);
+
   const isAnswered = selectedAnswer !== null;
 
   useEffect(() => {
