@@ -12,7 +12,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    let unsubscribe;
+    let unsubscribe: (() => void) | undefined;
     if (isAuthenticated) {
       setLoading(true);
       unsubscribe = listenToPendingGames((games) => {
