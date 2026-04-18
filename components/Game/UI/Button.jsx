@@ -6,7 +6,7 @@ import { playSound } from '../../../lib/services/sound';
 export default function Button({
   variant = 'primary',
   children,
-  onClick,
+  onClick = null,
   disabled = false,
   className = '',
   type = 'button',
