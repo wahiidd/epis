@@ -8,14 +8,14 @@ import { listenToPendingGames, updateGameStatus } from '../../lib/services/fireb
 export default function AdminPage() {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [pendingGames, setPendingGames] = useState([]);
+  const [pendingGames, setPendingGames] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let unsubscribe: (() => void) | undefined;
     if (isAuthenticated) {
       setLoading(true);
-      unsubscribe = listenToPendingGames((games) => {
+      unsubscribe = listenToPendingGames((games: any[]) => {
         setPendingGames(games);
         setLoading(false);
       });
