@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 
 
-import { sampleQuestions } from '../../../../backend/src/data/sampleQuestions';
+import { sampleQuestions } from '../../../../lib/data/sampleQuestions';
 
 export async function GET(req) {
   try {
