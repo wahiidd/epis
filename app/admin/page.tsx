@@ -5,17 +5,38 @@ import Button from '../../components/Game/UI/Button';
 import '../../styles/screens.css';
 import { listenToPendingGames, updateGameStatus } from '../../lib/services/firebaseService';
 
+// --- Types pour éviter les erreurs de compilation ---
+
+interface Player {
+  playerId: string;
+  name: string;
+  score: number;
+}
+
+interface GameSession {
+  id: string;
+  mode: string;
+  players: Player[];
+  status: 'pending' | 'active' | 'rejected' | 'finished';
+  createdAt?: {
+    toDate: () => Date;
+  };
+  boardState?: any[];
+}
+
+// ----------------------------------------------------
+
 export default function AdminPage() {
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [pendingGames, setPendingGames] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState<string>('');
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [pendingGames, setPendingGames] = useState<GameSession[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     let unsubscribe: (() => void) | undefined;
     if (isAuthenticated) {
       setLoading(true);
-      unsubscribe = listenToPendingGames((games: any[]) => {
+      unsubscribe = listenToPendingGames((games: GameSession[]) => {
         setPendingGames(games);
         setLoading(false);
       });
@@ -25,7 +46,7 @@ export default function AdminPage() {
     };
   }, [isAuthenticated]);
 
-  const handleAction = async (gameId: string, status: string) => {
+  const handleAction = async (gameId: string, status: 'active' | 'rejected') => {
     try {
       const result = await updateGameStatus(gameId, status);
       if (!result.success) {
@@ -78,6 +99,7 @@ export default function AdminPage() {
             Tableau de Bord <span className="text-[#56bf7c]">Admin</span>
           </h1>
           <button 
+            type="button"
             onClick={() => setIsAuthenticated(false)}
             className="px-4 py-2 text-white/60 hover:text-white transition-colors"
           >
@@ -96,7 +118,7 @@ export default function AdminPage() {
             </div>
           ) : (
             <div className="grid gap-4">
-              {pendingGames.map((game) => (
+              {pendingGames.map((game: GameSession) => (
                 <div 
                   key={game.id} 
                   className="p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 animate-fadeIn"
@@ -107,14 +129,14 @@ export default function AdminPage() {
                         {game.id}
                       </span>
                       <span className="text-white/40 text-xs">
-                        {game.createdAt?.toDate?.() ? game.createdAt.toDate().toLocaleTimeString() : 'En attente...'}
+                        {game.createdAt?.toDate ? game.createdAt.toDate().toLocaleTimeString() : 'En attente...'}
                       </span>
                     </div>
                     <h3 className="text-xl font-bold text-white mb-1 uppercase">
                       Mode: {game.mode}
                     </h3>
                     <p className="text-white/60">
-                      Joueurs: {game.players?.map(p => p.name).join(', ') || 'N/A'}
+                      Joueurs: {game.players?.map((p: Player) => p.name).join(', ') || 'N/A'}
                     </p>
                   </div>
                   
