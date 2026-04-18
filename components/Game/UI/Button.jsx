@@ -1,3 +1,8 @@
+"use client";
+
+import React from 'react';
+import { playSound } from '../../../lib/services/sound';
+
 export default function Button({
   variant = 'primary',
   children,
