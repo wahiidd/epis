@@ -25,7 +25,7 @@ export default function AdminPage() {
     };
   }, [isAuthenticated]);
 
-  const handleAction = async (gameId, status) => {
+  const handleAction = async (gameId: string, status: string) => {
     try {
       const result = await updateGameStatus(gameId, status);
       if (!result.success) {
@@ -36,7 +36,7 @@ export default function AdminPage() {
     }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === 'JeuEpistemia2026') {
       setIsAuthenticated(true);
@@ -56,7 +56,7 @@ export default function AdminPage() {
               <input
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                 className="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-[#56bf7c]"
                 placeholder="Entrez le mot de passe..."
               />
