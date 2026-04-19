@@ -1,0 +1,112 @@
+/* Style Minimaliste pour l'Admin */
+.admin-container {
+  min-height: 100vh;
+  background: #0a1a16; /* Vert très sombre, presque noir */
+  color: white;
+  font-family: 'Inter', sans-serif;
+  padding: 2rem;
+}
+
+.admin-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.admin-title span {
+  color: #56bf7c;
+}
+
+.admin-section-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Cartes de session */
+.admin-request-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.admin-request-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(86, 191, 124, 0.3);
+  transform: translateX(4px);
+}
+
+.admin-game-id {
+  font-family: monospace;
+  background: rgba(86, 191, 124, 0.1);
+  color: #56bf7c;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.admin-game-mode {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.admin-players-list {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+/* Login simple */
+.admin-login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.admin-login-card {
+  background: #12241f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.admin-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: #56bf7c;
+  background: rgba(255, 255, 255, 0.08);
+}
